@@ -665,7 +665,7 @@ public class EvaluationServiceTest {
 
 	@Test
 	public void testThatAnInvalidCanadianSocialInsuranceNumberIsIdentifiedAsInvalid() {
-		assertFalse(evaluationService.isLuhnValid("046 454 287"));
+		assertFalse(evaluationService.isLuhnValid("046 454 287"));		
 	}
 
 	@Test
