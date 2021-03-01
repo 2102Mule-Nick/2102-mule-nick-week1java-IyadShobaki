@@ -564,6 +564,26 @@ public class EvaluationService {
 	 * rxpyi ldmul cqfnk hlevi gsvoz abwlt gives thequickbrownfoxjumpsoverthelazydog
 	 *
 	 */
+	static char correspondentLetter(char letter, int type) {
+		
+		if(type == 1) {
+			String plain = "abcdefghijklmnopqrstuvwxyz";
+			String cipher = "zyxwvutsrqponmlkjihgfedcba";
+			
+			int index = plain.indexOf(letter);
+			
+			return cipher.charAt(index);
+		}else {
+			String plain = "abcdefghijklmnopqrstuvwxyz";
+			String cipher = "zyxwvutsrqponmlkjihgfedcba";
+			
+			int index = cipher.indexOf(letter);
+			
+			return plain.charAt(index);
+		}
+	
+		
+	}
 	static class AtbashCipher {
 
 		/**
@@ -574,7 +594,35 @@ public class EvaluationService {
 		 */
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+	        string = string.replaceAll("[^a-zA-Z0-9]", "");
+	        StringBuilder sb = new StringBuilder();
+
+	        for(char letter : string.toCharArray()) {
+	            if(Character.isAlphabetic(letter)) {
+	                sb.append(correspondentLetter(letter,1));
+	            }else {
+	                sb.append(letter);
+	            }
+	        }
+
+	        String test = sb.toString();
+
+	        int count= 0;
+	        for (int i = test.length(); i > 0; i--){
+	            if(i % 5 == 0) {
+	                break;
+	            }else {
+	                count++;
+	            }
+	        }
+	        int countFullWords = (test.length() - count) / 5;
+	        String result = "";
+	        for(int i = 0; i < countFullWords; i++){
+	            result += test.substring(i*5, (i*5)+5) + " ";
+	        }
+	        result += test.substring(countFullWords*5,test.length());
+	        return result.trim();
 		}
 
 		/**
@@ -585,7 +633,19 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.toLowerCase();
+	        string = string.replaceAll(" ", "");
+	        StringBuilder sb = new StringBuilder();
+
+	        for(char letter : string.toCharArray()) {
+	            if(Character.isAlphabetic(letter)) {
+	                sb.append(correspondentLetter(letter,2));
+	            }else {
+	                sb.append(letter);
+	            }
+	        }
+
+	        return sb.toString();
 		}
 	}
 
