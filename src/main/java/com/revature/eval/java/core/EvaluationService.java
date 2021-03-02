@@ -193,13 +193,13 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 
 		string = string.replaceAll("[^0-9]", "");
+		if (string.charAt(0) == '1') {
+			string =  string.substring(1);
+		}
 		if (string.length() != 10) {
 			throw new IllegalArgumentException();
 		}
 
-		if (string.charAt(0) == '1') {
-			return string.substring(1);
-		}
 		return string;
 	}
 
